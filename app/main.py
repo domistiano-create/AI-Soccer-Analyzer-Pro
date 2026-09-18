@@ -22,8 +22,15 @@ app.include_router(agent_router)
 
 @app.get("/", response_class=HTMLResponse)
 def read_root():
-    """Serves the interactive visual web interface dashboard straight from the app folder."""
-    # Instructing the engine to look inside the app folder to grab your updated template
-    html_path = os.path.join(os.path.dirname(__file__), "app", "index.html")
+    """Serves the interactive frontend web interface layout safely on both cloud and local setups."""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # Try local root pathing option first
+    html_path = os.path.join(current_dir, "app", "index.html")
+    
+    # Cloud Fail-safe fallback if already running inside the app namespace folder directory
+    if not os.path.exists(html_path):
+        html_path = os.path.join(current_dir, "index.html")
+        
     with open(html_path, "r", encoding="utf-8") as file:
         return file.read()
