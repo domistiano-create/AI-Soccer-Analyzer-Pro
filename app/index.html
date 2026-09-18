@@ -151,7 +151,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Stripe Redirect Status Banner -->
         <div id="statusBanner" class="url-banner"></div>
 
         <header>
@@ -164,10 +163,8 @@
         </header>
 
         <div class="grid">
-            <!-- Left Panel: Control Decks -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
                 
-                <!-- Card 1: User Registration & Portal Login -->
                 <div class="card">
                     <h2>🔐 User Profile Identity Manager</h2>
                     <p style="color: var(--text-muted); font-size: 13px; margin: 0;">Register new subscriber IDs or sign in to switch metrics.</p>
@@ -189,17 +186,15 @@
                     <button class="btn-primary" onclick="runPrediction()" style="margin-top: 5px;">Generate Advanced Betting Markets</button>
                 </div>
 
-                <!-- Card 3: Production Stripe Credit Refiller -->
+                <!-- Card 3: Stripe Credit Refiller -->
                 <div class="card">
                     <h2>💳 Instant Wallet Credit Refiller</h2>
                     <p style="color: var(--text-muted); font-size: 13px; margin: 0;">Top up account metrics directly via Stripe Checkout gateway.</p>
-                    
                     <div class="chip-group">
                         <div class="chip" onclick="setDepositAmount(10)">+$10 Credits</div>
                         <div class="chip" onclick="setDepositAmount(20)">+$20 Credits</div>
                         <div class="chip" onclick="setDepositAmount(50)">+$50 Credits</div>
                     </div>
-                    
                     <div style="display: flex; gap: 10px;">
                         <input type="number" id="depositAmountInput" value="20" placeholder="Amount" min="5">
                         <button class="btn-success" onclick="depositCredits()" style="margin: 0; flex: 1;">Deposit Funds</button>
@@ -208,20 +203,21 @@
                 </div>
             </div>
 
-            <!-- Right Panel: Interactive Output Ticket Screen -->
+            <!-- Right Panel: Interactive Ticket Output Screen -->
             <div class="card" style="justify-content: flex-start;">
                 <h2>Prediction Ticket Output</h2>
                 <div id="loadingPlaceholder" style="color: var(--text-muted); font-size: 14px;">Submit a matchup request to compile your analytics pass...</div>
                 
                 <div id="resultBox" class="prediction-box">
                     <h3 id="fixtureTitle" style="margin: 0 0 10px 0; color: #fff;"></h3>
-                    
                     <div style="border-top: 1px solid #334155; padding-top: 10px;">
                         <strong>Outcomes & Decimal Odds:</strong>
                         <div class="probability-row"><span>Home Win (1):</span> <span><span id="prob1">-</span> <span id="odds1" class="odds-tag">@ -</span></span></div>
                         <div class="probability-row"><span>Draw (X):</span> <span><span id="probX">-</span> <span id="oddsX" class="odds-tag">@ -</span></span></div>
                         <div class="probability-row"><span>Away Win (2):</span> <span><span id="prob2">-</span> <span id="odds2" class="odds-tag">@ -</span></span></div>
                     </div>
-
                     <div style="border-top: 1px solid #334155; padding-top: 10px; margin-top: 10px;">
                         <strong>Double Chance Recommendation:</strong><br>
+                        <span id="dcPick" class="market-badge" style="margin-top: 5px;">--</span>
+                        <span id="dcOddsValue" class="odds-tag"></span>
+                    </div>
